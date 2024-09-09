@@ -1,0 +1,232 @@
+@namespace codeXpert.Theme.SideBar
+@inherits ThemeBase
+@inject ISettingService SettingService
+@inject IFileService FileService
+
+<div id="themeBody" class="sidebar-expand-lg bg-body-tertiary" data-bs-theme="@_themeColor">
+    <!--begin::App Wrapper-->
+    <div class="app-wrapper">
+        <!--begin::Header-->
+        <nav id="header" class="app-header navbar bg-body">
+            <!-- Container wrapper -->
+            <div class="container-fluid">
+                <!--begin::Start Navbar Links-->
+                <ul class="navbar-nav">
+                    <!-- begin::Start Navbar Links Left -->
+                    <li class="nav-item">
+                        <a class="nav-link pt-2" data-lte-toggle="sidebar" href="#" role="button"><i class="oi oi-menu"></i></a>
+                    </li>
+                </ul>
+                <!--begin::End Navbar Links Right -->
+                <div class="controls ms-auto">
+                    <div class="controls-group d-flex">
+                        <Search CssClass="me-3 text-center" />
+                        <UserPanel ShowRegister="@_register" />
+                        <div class="">
+                            <ControlPanel LanguageDropdownAlignment="right" />
+                        </div>
+                        <a class="nav-link" data-lte-toggle="fullscreen" href="#" role="button">
+                            <i data-lte-icon="maximize" class="bi bi-arrows-fullscreen"></i>
+                            <i data-lte-icon="minimize" class="bi bi-fullscreen-exit" style="display: none;"></i>
+                        </a>
+                    </div>
+                </div>
+                <!--end::End Navbar Links Right -->
+            </div>
+        </nav>
+
+        <Sidebar />
+
+        <!--begin::App Main-->
+        <main id="main" class="app-main">
+            
+            <!--begin::App Content Header-->
+            <div class="app-content-header">
+                <!--begin::Container-->
+                <div class="container-fluid">
+
+                    <!--begin::Row-->
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <Pane Name="Title" />
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="breadcrumb float-sm-end">
+                                @if (_breadcrumbs)
+                                {
+                                    <!-- ======= Breadcrumbs ======= -->
+                                    <Breadcrumbs></Breadcrumbs>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <!--end::Row-->
+
+                </div>
+                <!--end::Container-->
+            </div>
+
+            <div class="app-content">
+                
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <Pane Name="@PaneNames.Admin" />
+                        </div>
+                    </div>
+                    <Pane Name="Top Full Width" />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <Pane Name="Top 100%" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <Pane Name="Left 50%" />
+                        </div>
+                        <div class="col-md-6">
+                            <Pane Name="Right 50%" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <Pane Name="Left 33%" />
+                        </div>
+                        <div class="col-md-4">
+                            <Pane Name="Center 33%" />
+                        </div>
+                        <div class="col-md-4">
+                            <Pane Name="Right 33%" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <Pane Name="Left Outer 25%" />
+                        </div>
+                        <div class="col-md-3">
+                            <Pane Name="Left Inner 25%" />
+                        </div>
+                        <div class="col-md-3">
+                            <Pane Name="Right Inner 25%" />
+                        </div>
+                        <div class="col-md-3">
+                            <Pane Name="Right Outer 25%" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <Pane Name="Left 25%" />
+                        </div>
+                        <div class="col-md-6">
+                            <Pane Name="Center 50%" />
+                        </div>
+                        <div class="col-md-3">
+                            <Pane Name="Right 25%" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <Pane Name="Left Sidebar 66%" />
+                        </div>
+                        <div class="col-md-4">
+                            <Pane Name="Right Sidebar 33%" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <Pane Name="Left Sidebar 33%" />
+                        </div>
+                        <div class="col-md-8">
+                            <Pane Name="Right Sidebar 66%" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <Pane Name="Bottom 100%" />
+                        </div>
+                    </div>
+                </div>
+                <Pane Name="Bottom Full Width" />
+            </div>
+
+        </main>
+        <!--end::App Main-->
+
+        <!--begin::Footer-->
+        <footer class="app-footer">
+
+            <div class="row">
+                <div class="col-md-4">
+                    <Pane Name="Footer Left 33%" />
+                </div>
+                <div class="col-md-4">
+                    <Pane Name="Footer Center 33%" />
+                </div>
+                <div class="col-md-4">
+                    <Pane Name="Footer Right 33%" />
+                </div>
+            </div>
+
+            <div class="row">
+                <!--begin::To the end-->
+                <div class="float-end d-none d-sm-inline">
+                    <Pane Name="Footer End" />
+                </div>
+                <!--end::To the end-->
+                <!--begin::Copyright-->
+                <div class="copyright">
+                    <Pane Name="Footer Copyright" />
+                </div>
+                <!--end::Copyright-->
+            </div>
+
+        </footer>
+        <!--end::Footer-->
+
+        <div id="preloader"></div>
+
+        <!--begin::Back To Top-->
+        <a href="@NavigateUrl()" class="back-to-top d-flex align-items-center justify-content-center" data-enhance-nav="false"><i class="bi bi-arrow-up-short"></i></a>
+        <!--end::Back To Top-->
+    </div>
+</div>
+
+@code {
+    public override string Name => "Standard";
+    public override string Panes => PaneNames.Admin + ",Title,Top Full Width,Top 100%,Left 50%,Right 50%,Left 33%,Center 33%,Right 33%,Left Outer 25%,Left Inner 25%,Right Inner 25%,Right Outer 25%,Left 25%,Center 50%,Right 25%,Left Sidebar 66%,Right Sidebar 33%,Left Sidebar 33%,Right Sidebar 66%,Bottom 100%,Bottom Full Width,Footer Left 33%,Footer Center 33%,Footer Right 33%,Footer End,Footer Copyright";
+
+    private bool _login = true;
+    private bool _register = true;
+    private string _themeColor = "light";
+    private bool _breadcrumbs = false;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+
+        if (firstRender)
+        {
+            var interop = new Interop(JSRuntime);
+            await interop.LoadAdminLte();
+            await interop.Load();
+
+            await JSRuntime.InvokeVoidAsync("AddSidebarWrapper");
+        }       
+    }
+
+    protected override void OnParametersSet()
+    {
+        try
+        {
+            var settings = SettingService.MergeSettings(PageState.Site.Settings, PageState.Page.Settings);
+            _login = bool.Parse(SettingService.GetSetting(settings, GetType().Namespace + ":Login", "true"));
+            _register = bool.Parse(SettingService.GetSetting(settings, GetType().Namespace + ":Register", "true"));
+            _themeColor = SettingService.GetSetting(settings, GetType().Namespace + ":ThemeColor", "");
+            _breadcrumbs = bool.Parse(SettingService.GetSetting(settings, GetType().Namespace + ":Breadcrumbs", "true"));
+        }
+        catch
+        {
+            // error loading theme settings
+        }
+    }
+}

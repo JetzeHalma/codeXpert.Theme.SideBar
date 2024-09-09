@@ -1,0 +1,425 @@
+﻿/**
+* Template Name: SideBar
+* Template URL: 
+* Updated: Apr 20 2024 with Bootstrap v5.3.3
+* Author: 
+* License:
+*/
+
+/* 
+ <uniquifier > : Use a unique and descriptive class name
+ <weight > : Use a value from 200 to 1000
+*/
+.--bs-body-font-family {
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+:root {
+    /* Navbar */
+    --bs-navbar-padding-x: 0;
+    --bs-navbar-padding-y: 0.5rem;
+    /*Nav*/
+    --bs-nav-link-padding-x: 1rem;
+    --bs-nav-link-padding-y: 0.5rem;
+}
+
+[data-bs-theme=dark] {
+    color: var(--bs-body-color);
+    background-color: var(--bs-body-bg);
+}
+
+[data-bs-theme=custom] {
+    color-scheme: custom;
+    --bs-secondary-bg-rgb: 52, 58, 64;
+}
+
+[data-bs-theme=custom] .app-sidebar {
+    --lte-sidebar-hover-bg: rgba(255, 255, 255, 0.1);
+    --lte-sidebar-color: #c2c7d0;
+    --lte-sidebar-hover-color: #fff;
+    --lte-sidebar-active-color: #fff;
+    --lte-sidebar-menu-active-bg: rgba(255, 255, 255, 0.1);
+    --lte-sidebar-menu-active-color: #fff;
+    --lte-sidebar-submenu-bg: transparent;
+    --lte-sidebar-submenu-color: #c2c7d0;
+    --lte-sidebar-submenu-hover-color: #fff;
+    --lte-sidebar-submenu-hover-bg: rgba(255, 255, 255, 0.1);
+    --lte-sidebar-submenu-active-color: #fff;
+    --lte-sidebar-submenu-active-bg: rgba(255, 255, 255, 0.1);
+    --lte-sidebar-header-color: #c5cad2;
+}
+
+    [data-bs-theme=custom] .app-sidebar .sidebar-brand {
+        border-bottom: 1px solid #495057;
+    }
+
+    [data-bs-theme=custom] .app-wrapper .shadow {
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, .25) !important;
+    }
+
+/*--------------------------------------------------------------
+# Override some default Oqtane stylings
+--------------------------------------------------------------*/
+.Oqtane-Modules-Admin-Login {
+    width: fit-content !important;
+    margin-top: 1.5rem;
+    margin-left: 2rem;
+}
+
+.app-tooltip:hover::before,
+.app-tooltip:focus::before,
+.app-tooltip:hover::after,
+.app-tooltip:focus::after {
+    z-index: 1038;
+}
+
+/*--------------------------------------------------------------
+# AdminLTE
+--------------------------------------------------------------*/
+/* Needed for app-tooltop above */
+.sidebar-expand-lg.layout-fixed-complete .app-main, .sidebar-expand-lg.layout-fixed .app-main {
+    overflow: inherit;
+}
+
+.modal-header .btn-close {
+    position: absolute !important;
+    right: 0 !important;
+    top: 0;
+    margin: 0.8rem;
+}
+
+.logo-xl {
+    /* Needed to center the logo */
+    position: inherit;
+}
+
+/*.accordion .accordion-item .accordion-body {
+    margin: 1em 2em;
+}
+
+.accordion-button {
+    font-weight: 600;
+    color: var(--bs-accordion-btn-color);
+}
+
+.accordion-button:not(.collapsed) {
+    border-bottom: 4px solid var(--bs-secondary);
+    color: var(--bs-secondary);
+    font-weight: 600;
+    background-color: var(--bs-secondary-bg-subtle);
+}
+
+.accordion-button:focus {
+    z-index: 3;
+    border-color: none;
+    outline: 0;
+    box-shadow: none;
+}
+*/
+
+
+/*--------------------------------------------------------------
+# General
+--------------------------------------------------------------*/
+body {
+    font-family: var(--bs-body-font-family);
+    color: var(--bs-body-color);
+    background-color: var(--bs-body-bg);
+}
+
+hr {
+    margin: 1rem 0;
+    color: inherit;
+    border: 0;
+    border-top: var(--bs-border-width) solid;
+    opacity: 0.25;
+}
+
+h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--bs-heading-color);
+}
+
+h1, .h1 {
+    font-size: calc(1.375rem + 1.5vw);
+}
+
+@media (min-width: 1200px) {
+    h1, .h1 {
+        font-size: 2.5rem;
+    }
+}
+
+h2, .h2 {
+    font-size: calc(1.325rem + 0.9vw);
+}
+
+@media (min-width: 1200px) {
+    h2, .h2 {
+        font-size: 2rem;
+    }
+}
+
+h3, .h3 {
+    font-size: calc(1.3rem + 0.6vw);
+}
+
+@media (min-width: 1200px) {
+    h3, .h3 {
+        font-size: 1.75rem;
+    }
+}
+
+h4, .h4 {
+    font-size: calc(1.275rem + 0.3vw);
+}
+
+@media (min-width: 1200px) {
+    h4, .h4 {
+        font-size: 1.5rem;
+    }
+}
+
+
+/*--------------------------------------------------------------
+# Page Title
+--------------------------------------------------------------*/
+.pagetitle {
+    margin-bottom: 10px;
+}
+
+    .pagetitle h1 {
+        font-size: 24px;
+        margin-bottom: 0;
+        font-weight: 600;
+        color: var(--lte-sidebar-header-color);
+    }
+
+/*--------------------------------------------------------------
+# Preloader
+--------------------------------------------------------------*/
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    overflow: hidden;
+    background: #f6f9ff;
+}
+
+    #preloader:before {
+        content: "";
+        position: fixed;
+        top: calc(50% - 30px);
+        left: calc(50% - 30px);
+        border: 6px solid #37517e;
+        border-top-color: #fff;
+        border-bottom-color: #fff;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        animation: animate-preloader 1s linear infinite;
+    }
+
+@keyframes animate-preloader {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/*--------------------------------------------------------------
+# Back to top button
+--------------------------------------------------------------*/
+.back-to-top {
+    position: fixed;
+    visibility: hidden;
+    opacity: 0;
+    right: 15px;
+    bottom: 15px;
+    z-index: 99999;
+    background: var(--bs-secondary-bg-subtle);
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    transition: all 0.4s;
+    border: 1px solid var(--bs-secondary-border-subtle);
+}
+
+    .back-to-top i {
+        font-size: 24px;
+        color: var(--bs-secondary-text-emphasis);
+        line-height: 0;
+    }
+        .back-to-top i:hover {
+            color: var(--bs-link-hover-color);
+        }
+
+    .back-to-top:hover {
+        background: var(--bs-border-color);
+        border: 1px solid var(--bs-border-color-translucent);
+    }
+
+.back-to-top.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+/*--------------------------------------------------------------
+# Override some default Bootstrap stylings
+--------------------------------------------------------------*/
+/* Dropdown menus for the User Panel */
+/*.controls-group > .user-menu > .nav-link::after {
+    content: none;
+}*/
+
+.controls-group > .user-menu > .dropdown-menu {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    width: 280px;
+    padding: 0;
+}
+
+.controls-group > .user-menu > .dropdown-menu,
+.controls-group > .user-menu > .dropdown-menu > .user-body {
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.controls-group > .user-menu > .dropdown-menu > li.user-header {
+    min-height: 175px;
+    padding: 10px;
+    text-align: center;
+}
+
+.controls-group > .user-menu > .dropdown-menu > li.user-header > img {
+    z-index: 5;
+    width: 90px;
+    height: 90px;
+    border: 3px solid;
+    border-color: transparent;
+    border-color: var(--bs-border-color-translucent);
+}
+
+.controls-group > .user-menu > .dropdown-menu > li.user-header > p {
+    z-index: 5;
+    margin-top: 10px;
+    font-size: 17px;
+    word-wrap: break-word;
+}
+
+.controls-group > .user-menu > .dropdown-menu > li.user-header > p > small,
+.controls-group > .user-menu > .dropdown-menu > li.user-header > p > .small {
+    display: block;
+    font-size: 12px;
+}
+
+.controls-group > .user-menu > .dropdown-menu > .user-body {
+    padding: 15px;
+    border-top: 1px solid var(--bs-border-color);
+    border-bottom: 1px solid var(--bs-border-color-translucent);
+}
+
+.controls-group > .user-menu > .dropdown-menu > .user-body::after {
+    display: block;
+    clear: both;
+    content: "";
+}
+
+.controls-group > .user-menu > .dropdown-menu > .user-body a {
+    text-decoration: none;
+}
+
+@media (min-width: 576px) {
+    .controls-group > .user-menu > .dropdown-menu > .user-body a {
+        color: var(--bs-body-color) !important;
+        background-color: var(--bs-body-bg) !important;
+    }
+}
+
+.controls-group > .user-menu > .dropdown-menu > .user-footer {
+    padding: 10px;
+    background-color: var( --bs-light-bg-subtle);
+}
+
+.controls-group > .user-menu > .dropdown-menu > .user-footer::after {
+    display: block;
+    clear: both;
+    content: "";
+}
+
+.controls-group > .user-menu > .dropdown-menu > .user-footer .btn-default {
+    color: var(--bs-body-color);
+}
+
+@media (min-width: 576px) {
+    .controls-group > .user-menu > .dropdown-menu > .user-footer .btn-default:hover {
+        background-color: var(--bs-body-bg);
+    }
+}
+
+.controls-group > .user-menu .user-image {
+    float: left;
+    width: 2rem;
+    height: 2rem;
+    margin-top: -2px;
+    border-radius: 50%;
+}
+
+@media (min-width: 576px) {
+    .controls-group > .user-menu .user-image {
+        float: none;
+        margin-top: -8px;
+        margin-right: 0.4rem;
+        line-height: 10px;
+    }
+}
+
+/*--------------------------------------------------------------
+# Error 404
+--------------------------------------------------------------*/
+.error-404 {
+    padding: 30px;
+}
+
+    .error-404 h1 {
+        font-size: 180px;
+        font-weight: 700;
+        color: #4154f1;
+        margin-bottom: 0;
+        line-height: 150px;
+    }
+
+    .error-404 h2 {
+        font-size: 24px;
+        font-weight: 700;
+        color: #012970;
+        margin-bottom: 30px;
+    }
+
+    .error-404 .btn {
+        background: #51678f;
+        color: #fff;
+        padding: 8px 30px;
+    }
+
+        .error-404 .btn:hover {
+            background: #3e4f6f;
+        }
+
+@media (min-width: 992px) {
+    .error-404 img {
+        max-width: 50%;
+    }
+}

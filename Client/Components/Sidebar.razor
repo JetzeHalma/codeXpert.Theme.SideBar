@@ -1,0 +1,51 @@
+﻿@namespace codeXpert.Theme.SideBar
+@inherits MenuBase
+
+@if (MenuPages.Any())
+{
+    <aside id="sidebar" class="app-sidebar bg-body-secondary shadow nav-indent">
+        <!--begin::Sidebar Brand-->
+        <div class="sidebar-brand">
+            <!--begin::Brand Link-->
+            @if (PageState.Site.LogoFileId != null)
+            {
+                @if (ShowLogoSwitch)
+                {
+                    <a href="@PageState.Alias.Path" class="brand-link logo-switch">
+                        <!--begin::Brand Image-->
+                        <img class="brand-image-xs logo-xl" src="@Utilities.FileUrl(PageState.Alias, PageState.Site.LogoFileId.Value)" alt="@PageState.Site.Name" />
+                        <img class="brand-image-xl logo-xs" alt="@PageState.Site.Name" src="@Oqtane.Shared.Utilities.FileUrl(PageState.Alias, PageState.Site.FaviconFileId.Value)">
+                    </a>
+                }
+                else
+                {
+                    <a href="@PageState.Alias.Path" class="brand-link">
+                        <!--begin::Brand Image-->
+                        <img class="brand-image" src="@Utilities.FileUrl(PageState.Alias, PageState.Site.LogoFileId.Value)" alt="@PageState.Site.Name" />
+                    </a>
+                }
+            }
+            else
+            {
+                <!--begin::Brand Text-->
+                <span class="brand-text fw-light">@PageState.Site.Name</span>
+                <!--end::Brand Text-->
+            }
+            <!--end::Brand Link-->
+        </div>
+        <!--end::Sidebar Brand-->
+
+        <div class="sidebar-wrapper">
+            <nav class="mt-2">
+                <!--begin::Sidebar Menu-->
+                <SideBarMenu />
+                <!--end::Sidebar Menu-->
+            </nav>
+        </div>
+    </aside>
+}
+
+@code{
+    [Parameter]
+    public bool ShowLogoSwitch { get; set; } = false;
+}

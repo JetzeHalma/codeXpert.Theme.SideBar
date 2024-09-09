@@ -1,0 +1,74 @@
+﻿@namespace codeXpert.Theme.SideBar
+@inherits MenuItemsBase
+@inject NavigationManager NavigationManager
+
+@foreach (var childPage in GetChildPages())
+{
+    if (!childPage.HasChildren)
+    {
+        if (childPage.Level == 0)
+        {
+            @* Root level, no children *@
+            if (childPage.PageId == PageState.Page.PageId)
+            {
+                @* Active page *@
+                <li class="nav-item menu-open">
+                    <a class="nav-link active" href="@GetUrl(childPage)">
+                        <i class="nav-icon @childPage.Icon opacity-50"></i>
+                        <p>@childPage.Name</p>
+                    </a>
+                </li>
+            }
+            else
+            {
+                @* Inactive page *@
+                <li class="nav-item">
+                    <a class="nav-link" href="@GetUrl(childPage)">
+                        <i class="nav-icon @childPage.Icon opacity-50"></i>
+                        <p>@childPage.Name</p>
+                    </a>
+                </li>
+            }
+        }
+        else
+        {
+            @* Child level *@
+            if (childPage.PageId == PageState.Page.PageId)
+            {
+                @* Active page *@
+                <li class="nav-item menu-open">
+                    <a class="nav-link active" href="@GetUrl(childPage)">
+                        <i class="nav-icon @childPage.Icon opacity-50"></i>
+                        <p>@childPage.Name</p>
+                    </a>
+                </li>
+            }
+            else
+            {
+                @* Inactive page *@
+                <li class="nav-item">
+                    <a class="nav-link" href="@GetUrl(childPage)">
+                        <i class="nav-icon @childPage.Icon opacity-50"></i>
+                        <p>@childPage.Name</p>
+                    </a>
+                </li>
+            }
+        }
+    }
+    else
+    {
+        @* Page has children *@
+        <li class="nav-item">
+            <a class="nav-link">
+                <i class="nav-icon @childPage.Icon opacity-50"></i>
+                    <p>@childPage.Name
+                    <i class="nav-arrow bi bi-chevron-down"></i>
+                </p>
+                
+            </a>
+            <ul class="nav nav-treeview">
+                <SideBarItems ParentPage="childPage" Pages="Pages" />
+            </ul>
+        </li>
+    }
+}

@@ -1,0 +1,11 @@
+﻿@namespace codeXpert.Theme.SideBar
+@inherits MenuBase
+
+@if (MenuPages.Any())
+{
+    <!-- Sidebar Menu -->
+    <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu" data-accordion="false">
+        <SideBarItems ParentPage="null" Pages="MenuPages" />
+    </ul>
+    <!-- /.sidebar-menu -->
+}

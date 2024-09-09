@@ -1,0 +1,85 @@
+﻿@namespace codeXpert.Theme.SideBar
+@using System.Net
+@inherits MenuBase
+@inject IStringLocalizer<UserProfile> Localizer
+
+<div class="nav-item dropdown user-menu mx-1">
+        
+    @if (PageState.User != null)
+    {
+
+        <a href="#" class="nav-link btn-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="true">
+            @if (PageState.User.PhotoFileId != null)
+            {
+                <img src="@Oqtane.Shared.Utilities.FileUrl(PageState.Alias, PageState.User.PhotoFileId.Value)" class="user-image rounded-circle shadow" alt="@PageState.User.DisplayName" loading="lazy">
+            }
+            else
+            {
+                <span class="oi oi-person link-secondary" alt="@PageState.User.DisplayName"></span>
+            }
+            <span class="d-none d-md-inline ms-2">@PageState.User.Username</span>
+        </a>
+
+        <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end" data-bs-popper="static">
+            <!--begin::User Header-->
+            <li class="user-header">
+                <!--begin::User Image-->
+                @if (PageState.User.PhotoFileId != null)
+                {
+                    <img src="@Oqtane.Shared.Utilities.FileUrl(PageState.Alias, PageState.User.PhotoFileId.Value)" style="max-width: 160px" class="rounded-circle" alt="@PageState.User.DisplayName">
+                }
+                else
+                {
+                    <i class="oi oi-person rounded-circle border border-3 bg-body-tertiary text-bg-tertiary mx-auto d-block pt-3" style="font-size: 48px; max-width: 90px; height: 90px;"></i>
+                }
+                <!--end::User Image-->
+                <p class="mt-2">
+                    @PageState.User.DisplayName<br />
+                    <small>@PageState.User.Email</small>
+                </p>
+            </li>
+
+            <!--begin::User Footer-->
+            <li class="user-footer bg-body-tertiary">
+                <a href="@NavigateUrl("profile", "returnurl=" + _returnurl)" class="btn btn-default">@Localizer["Profile"]</a>
+                <UserLogin />
+            </li>
+            <!--end::User Footer-->
+        </ul>
+    }
+    else
+    {
+        <!--begin::User Footer-->
+        @* && PageState.Site.AllowRegistration is not working*@
+        @if (ShowRegister)
+        {
+            <a href="@NavigateUrl("register", "returnurl=" + _returnurl)" class="btn btn-default btn-link me-1">@Localizer["Register"]</a>
+        }
+        <UserLogin />
+        <!--end::User Footer-->
+    }
+    
+</div>
+
+@code {
+
+    [Parameter]
+    public bool ShowRegister { get; set; } = false;
+
+    private string _returnurl = "";
+
+    protected override void OnParametersSet()
+    {
+        if (!PageState.QueryString.ContainsKey("returnurl"))
+        {
+            // remember current url
+            _returnurl = WebUtility.UrlEncode(PageState.Route.PathAndQuery);
+        }
+        else
+        {
+            // use existing value
+            _returnurl = PageState.QueryString["returnurl"];
+        }
+    }
+
+}

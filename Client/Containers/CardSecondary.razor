@@ -1,0 +1,44 @@
+@namespace codeXpert.Theme.SideBar
+@inherits ContainerBase
+@inject ISettingService SettingService
+
+<div class="@_classes">
+    @if (_title && ModuleState.Title != "-")
+    {
+        <div class="card-header px-4">
+            <ModuleActions />
+            <div class="card-title">
+                @(ModuleState.Title)
+            </div>
+        </div>
+    }
+    else
+    {
+        <ModuleActions />
+    }
+    <div class="card-body px-4">
+        <ModuleInstance />
+    </div>
+</div>
+
+@code {
+    public override string Name => "codeXpert SideBar - CardSecondary";
+
+    private bool _title = true;
+    private string _classes = "card card-secondary card-outline";
+
+    protected override void OnParametersSet()
+    {
+        try
+        {
+
+            _title = bool.Parse(SettingService.GetSetting(ModuleState.Settings, GetType().Namespace + ":Title", "true"));
+
+        }
+        catch
+        {
+            // error loading container settings
+        }
+    }
+
+}
