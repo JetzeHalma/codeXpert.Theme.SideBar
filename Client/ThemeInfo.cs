@@ -28,6 +28,7 @@ namespace codeXpert.Theme.SideBar
                 new Resource { ResourceType = ResourceType.Stylesheet, Url = "~/assets/vendor/bootstrap-icons/bootstrap-icons.css" },
                // new Resource { ResourceType = ResourceType.Stylesheet, Url = "~/assets/vendor/boxicons/css/boxicons.min.css" },
                 new Resource { ResourceType = ResourceType.Stylesheet, Url = "~/assets/vendor/AdminLTE/adminlte.css" },
+               // new Resource { ResourceType = ResourceType.Stylesheet, Url = "~/assets/vendor/AdminLTE/adminlte.rtl.css" },
 
                 // Template Main CSS File
                 new Resource { ResourceType = ResourceType.Stylesheet, Url = "~/assets/css/Theme.css" },

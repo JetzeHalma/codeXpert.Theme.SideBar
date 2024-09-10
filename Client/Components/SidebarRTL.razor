@@ -1,0 +1,73 @@
+﻿@namespace codeXpert.Theme.SideBar
+@inherits MenuBase
+
+@if (MenuPages.Any())
+{
+    <aside id="sidebar" class="app-sidebar bg-body-secondary shadow nav-indent">
+        <!--begin::Sidebar Brand-->
+        <div class="sidebar-brand">
+            <!--begin::Brand Link-->
+            @if (PageState.Site.LogoFileId != null)
+            {
+                @if (ShowLogoSwitch)
+                {
+                    <a href="@PageState.Alias.Path" class="brand-link logo-switch">
+                        <!--begin::Brand Image-->
+                        <img class="brand-image-xs logo-xl" src="@Utilities.FileUrl(PageState.Alias, PageState.Site.LogoFileId.Value)" alt="@PageState.Site.Name" />
+                        <img class="brand-image-xl logo-xs" alt="@PageState.Site.Name" src="@Oqtane.Shared.Utilities.FileUrl(PageState.Alias, PageState.Site.FaviconFileId.Value)">
+                    </a>
+                }
+                else
+                {
+                    <a href="@PageState.Alias.Path" class="brand-link">
+                        <!--begin::Brand Image-->
+                        <img class="brand-image" src="@Utilities.FileUrl(PageState.Alias, PageState.Site.LogoFileId.Value)" alt="@PageState.Site.Name" />
+                    </a>
+                }
+            }
+            else
+            {
+                <!--begin::Brand Text-->
+                <span class="brand-text fw-light">@PageState.Site.Name</span>
+                <!--end::Brand Text-->
+            }
+            <!--end::Brand Link-->
+        </div>
+        <!--end::Sidebar Brand-->
+
+        <div class="sidebar-wrapper" data-overlayscrollbars="host">
+            <div class="os-size-observer os-size-observer-appear">
+                <div class="os-size-observer-listener rtl">
+                </div>
+            </div>
+
+            <div data-overlayscrollbars-viewport="scrollbarHidden" style="margin-right: 0px; margin-bottom: -16px; margin-left: -16px; top: -8px; right: -8px; left: auto; width: calc(100% + 16px); padding: 8px; overflow-y: scroll;">
+                <nav class="mt-2">
+                    <!--begin::Sidebar Menu-->
+                    <SideBarMenu />
+                    <!--end::Sidebar Menu-->
+                </nav>
+            </div>
+
+            <div class="os-scrollbar os-scrollbar-horizontal os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-track-interactive os-scrollbar-cornerless os-scrollbar-unusable os-scrollbar-rtl os-scrollbar-auto-hide-hidden os-theme-light">
+                <div class="os-scrollbar-track">
+                    <div class="os-scrollbar-handle" style="width: 100%;">
+                    </div>
+                </div>
+            </div>
+
+            <div class="os-scrollbar os-scrollbar-vertical os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-track-interactive os-scrollbar-visible os-scrollbar-cornerless os-scrollbar-rtl os-scrollbar-auto-hide-hidden os-theme-light">
+                <div class="os-scrollbar-track">
+                    <div class="os-scrollbar-handle" style="height: 30.904%; transform: translateY(0%);">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </aside>
+}
+
+@code{
+    [Parameter]
+    public bool ShowLogoSwitch { get; set; } = false;
+}
