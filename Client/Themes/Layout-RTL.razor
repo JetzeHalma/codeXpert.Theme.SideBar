@@ -3,7 +3,7 @@
 @inject ISettingService SettingService
 @inject IFileService FileService
 
-<div id="themeBody" class="layout-fixed sidebar-expand-lg bg-body-tertiary sidebar-open" data-bs-theme="@_themeColor">
+<div id="themeBody" class="layout-fixed sidebar-expand-lg bg-body-tertiary" data-bs-theme="@_themeColor">
     <!--begin::App Wrapper-->
     <div class="app-wrapper">
         <!--begin::Header-->
@@ -18,7 +18,7 @@
                     </li>
                 </ul>
                 <!--begin::End Navbar Links Right -->
-                <div class="controls ms-auto">
+                <div class="controls">
                     <div class="controls-group d-flex">
                         <Search CssClass="me-3 text-center" />
                         <UserPanel ShowRegister="@_register" />
@@ -211,4 +211,11 @@
             // error loading theme settings
         }
     }
+
+    // Override the default resource list
+    public override List<Resource> Resources => new List<Resource>()
+    {
+            new Resource { ResourceType = ResourceType.Stylesheet,
+            Url = "~/assets/vendor/AdminLTE/adminlte.rtl.css" },
+    };
 }
